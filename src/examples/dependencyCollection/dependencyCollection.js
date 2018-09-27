@@ -25,6 +25,10 @@ function observable(obj) {
 }
 
 function defineReactive(obj, key, value) {
+    // deps是一个数组而不是一个变量，
+    //是因为可能同一个属性会被多个计算属性所依赖,也就是存在多个Dep.target
+    // eg: 组件A, B, C 中分别有个计算属性 C1, 依赖store(vuex)中的 M值,
+    // 当M值发生变化后,对应组件A, B, C中的计算属性C1都会接收到M值的变化
     let deps = [];
     Object.defineProperty(obj, key, {
         get() {
@@ -60,12 +64,12 @@ function watcher(obj, key, callback) {
             return val;
         },
         set() {
-            console.error('计算属性无法被赋值！')  
+            console.error('计算属性无法被赋值！')
         }
     })
 }
 
-function onComputedUpdate (val) {
+function onComputedUpdate(val) {
     console.log(`我的类型是：${val}`);
 }
 
@@ -79,5 +83,10 @@ watcher(hero, 'type', () => {
     return hero.health > 4000 ? '坦克' : '脆皮'
 })
 
+watcher(hero, 'identity', () => {
+    return hero.health > 4000 ? '伯爵' : '知县'
+})
+
 console.log(hero.type);
+console.log(hero.identity);
 hero.health = 5000;

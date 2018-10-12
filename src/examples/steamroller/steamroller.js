@@ -21,14 +21,18 @@ let steamroller = function(arr) {
 }
 
 
-let source = [1, [2],{}, [3, [[4]]]];
-let result = steamroller(source);
-console.log(result);
+let source = [1, [2], {},
+    [3, [
+        [4]
+    ]]
+];
+// let result = steamroller(source);
+// console.log(result);
 
 
 
 function flatten(arr) {
-    return arr.reduce(function(prev, next){
+    return arr.reduce(function(prev, next) {
         return prev.concat(Array.isArray(next) ? flatten(next) : next)
     }, [])
 }

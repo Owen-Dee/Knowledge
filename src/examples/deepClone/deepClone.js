@@ -25,12 +25,12 @@ let deepClone = function(current, copyObj) {
 
 function deepClone3(newObj, oldObj) {
     var obj = newObj || {};
-    for (var key in oldObj){
+    for (var key in oldObj) {
         var temp = oldObj[key];
-        if (obj === temp){
+        if (obj === temp) {
             continue;
         }
-        if (typeof oldObj[key] === 'object'){
+        if (typeof oldObj[key] === 'object') {
             obj[key] = (oldObj[key].constructor === Array) ? [] : {};
             deepClone3(obj[key], oldObj[key]);
         } else {
@@ -41,13 +41,30 @@ function deepClone3(newObj, oldObj) {
     return obj;
 }
 
+// let deepClone4 = function(newObj, oldObj) {
+//     let obj = newObj || {};
+//     for (let key in oldObj) {
+//         let temp = oldObj[key];
+//         if (obj === temp) {
+//             continue;
+//         }
+
+//         if (typeof oldObj[key] === 'object') {
+//             obj[key] = obj instanceof Array ? [] : {};
+//             deepClone3(obj[key], oldObj[key]);
+//         } else {
+//             obj[key] = oldObj[key];
+//         }
+//     }
+// }
+
 let obj1 = {
     a: 2,
     b: function() {},
 }
 
 let obj2 = {
-    c: [1,2,3],
+    c: [1, 2, 3],
     d: obj1,
     e: 'asd',
     f: {

@@ -4,7 +4,7 @@
 // import './examples/debounce/debounce'
 // import './examples/throttle/throttle'
 // import './examples/steamroller/steamroller'
-// import './examples/deepClone/deepClone'
+import './examples/deepClone/deepClone'
 // import './examples/instanceof/instanceof'
 
 // import './examples/performance/performance'
@@ -30,21 +30,21 @@
 // }, 2000);
 
 //mvvm v2
-import DcyVue from './examples/mvvm/v2/index'
-let ele = document.querySelector('#name');
-let dcyVue = new DcyVue({
-    el: '#app',
-    data: {
-        name: 'hello world'
-    }
-});
-console.log('============v2==============');
-window.setTimeout(function() {
-    console.log('name值改变了');
-    dcyVue.name = 'canfoo';
-}, 2000);
+// import DcyVue from './examples/mvvm/v2/index'
+// let ele = document.querySelector('#name');
+// let dcyVue = new DcyVue({
+//     el: '#app',
+//     data: {
+//         name: 'hello world'
+//     }
+// });
+// console.log('============v2==============');
+// window.setTimeout(function() {
+//     console.log('name值改变了');
+//     dcyVue.name = 'canfoo';
+// }, 2000);
 
-window.setTimeout(function() {
-    console.log('name值又改变了');
-    dcyVue.name = 'dcy';
-}, 3000);
+// window.setTimeout(function() {
+//     console.log('name值又改变了');
+//     dcyVue.name = 'dcy';
+// }, 3000);

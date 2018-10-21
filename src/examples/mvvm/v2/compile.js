@@ -22,7 +22,7 @@ class Compile {
         let fragment = document.createDocumentFragment();
         let child = el.firstChild;
         while (child) {
-            debugger
+            //将Dom元素移入fragment中,那么el的firstChild将由第二个子节点代替
             fragment.appendChild(child);
             child = el.firstChild;
         }
@@ -33,7 +33,6 @@ class Compile {
     compileElement(el) {
         let childNodes = el.childNodes;
         [].slice.call(childNodes).forEach((node) => {
-            debugger
             let reg = /\{\{(.*)\}\}/;
             let text = node.textContent;
             if (this.isTextNode(node) && reg.test(text)) {

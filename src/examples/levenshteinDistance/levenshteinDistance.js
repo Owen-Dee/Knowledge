@@ -16,20 +16,54 @@
     3.扫描完后，返回矩阵的最后一个值d[n][m]即是它们的距离。
  */
 
- /**
-  *     l o v e
-  *   0 1 2 3 4
-  * l 1 
-  * o 2
-  * v 3
-  * e 4
-  * 2 5
-  */
+//step1:
+/**
+ *     l o v e
+ *   0 1 2 3 4
+ * l 1 
+ * o 2
+ * e 3
+ * v 4
+ * 2 5
+ */
+
+//step2:
+/**
+ *     l o v e
+ *   0 1 2 3 4
+ * l 1 0
+ * o 2 1
+ * e 3 2
+ * v 4 3
+ * 2 5 4
+ */
+
+//step3:
+/**
+ *     l o v e
+ *   0 1 2 3 4
+ * l 1 0 1
+ * o 2 1 0
+ * e 3 2 1
+ * v 4 3 2
+ * 2 5 4 3
+ */
+
+//step4:
+/**
+ *     l o v e
+ *   0 1 2 3 4
+ * l 1 0 1 2 3
+ * o 2 1 0 1 2
+ * e 3 2 1 1 1
+ * v 4 3 2 1 2
+ * 2 5 4 3 2 2
+ */
 
 function levenshteinDistance(str1, str2) {
     let matrix = new Array();
-    let n = str1.length; // str1的长度最为二维数据的列
-    let m = str2.length; // str2的长度最为二维数据的行
+    let n = str1.length; // str1的长度为二维数据的列
+    let m = str2.length; // str2的长度为二维数据的行
     if (n === 0) {
         return m;
     }
@@ -53,9 +87,9 @@ function levenshteinDistance(str1, str2) {
     }
 
     for (let i = 1; i <= m; i++) {
-        let ch1 = str2[i -1];
+        let ch1 = str2[i - 1];
         for (j = 1; j <= n; j++) {
-            let ch2 = str1[j -1];
+            let ch2 = str1[j - 1];
             let temp;
             if (ch1 === ch2) {
                 temp = 0;
@@ -63,14 +97,14 @@ function levenshteinDistance(str1, str2) {
                 temp = 1;
             }
 
-            let leftVal = matrix[i -1][j] + 1; // 表示增加操作 
-            let upVal = matrix[i][j-1] + 1; // 表示删除操作 
-            let leftUpVal = matrix[i - 1][j - 1] + temp; // 表示替换操作
+            let leftVal = matrix[i - 1][j] + 1; // 表示增加操作 (左边)
+            let upVal = matrix[i][j - 1] + 1; // 表示删除操作 (上边)
+            let leftUpVal = matrix[i - 1][j - 1] + temp; // 表示替换操作 (左上)
             matrix[i][j] = lowerOfThree(leftVal, upVal, leftUpVal);
         }
     }
 
-    return matrix;
+    return matrix[m][n];
 }
 
 function lowerOfThree(first, second, third) {

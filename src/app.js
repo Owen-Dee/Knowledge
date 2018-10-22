@@ -55,4 +55,6 @@
  */
 // import './examples/raphael/raphaelDemo'
 
-import './examples/levenshteinDistance/levenshteinDistance'
+// import './examples/levenshteinDistance/levenshteinDistance'
+
+import './examples/KMP/kmp'

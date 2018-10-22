@@ -48,3 +48,6 @@ import './examples/deepClone/deepClone'
 //     console.log('name值又改变了');
 //     dcyVue.name = 'dcy';
 // }, 3000);
+
+//raphael
+// import './examples/raphael/raphaelDemo'

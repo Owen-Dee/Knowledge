@@ -1,3 +1,5 @@
+import { isObject } from "util";
+
 /*
 * 对象的深拷贝与浅拷贝的区别如下：
      浅拷贝：仅仅复制对象的引用，而不是对象本身；
@@ -39,42 +41,6 @@ function deepClone3(newObj, oldObj) {
     }
 
     return obj;
-}
-
-let deepClone4 = function(newObj, oldObj) {
-    let root = newObj || {};
-    const loopList = [{
-        parent: root,
-        key: undefined,
-        data: oldObj
-    }];
-
-    while (loopList.length) {
-        const node = loopList.pop();
-        const parent = node.parent;
-        const key = node.key;
-        const data = node.data;
-
-        let res = parent;
-        if (typeof key !== 'undefined') {
-            res = parent[key] = {};
-        }
-
-        for (let k in data) {
-            if (typeof data[k] === 'object') {
-                let obj = {
-                    parent: res,
-                    key: key,
-                    data: data[k]
-                };
-                loopList.push(obj);
-            } else {
-                res[k] = data[k];
-            }
-        }
-    }
-
-    return root;
 }
 
 function cloneLoop(x) {
@@ -134,10 +100,64 @@ let obj2 = {
     }
 }
 
-let result = deepClone4(obj1, obj2);
-console.log(result);
+// let result = deepClone4(obj1, obj2);
+// console.log(result);
 
 // ====================================
+
+
+// cloneLoop(a);
+
+/**==========function============= */
+
+let deepClone4 = function(newObj, oldObj) {
+    if (!(typeof oldObj === 'object')) {
+        return;
+    }
+
+    let root = newObj || {};
+    let stackList = [{
+        parent: root,
+        key: undefined,
+        data: oldObj
+    }];
+
+    while (stackList.length) {
+        let node = stackList.pop();
+        let parent = node.parent;
+        let key = node.key;
+        let data = node.data;
+
+        if (root === data) {
+            continue;
+        }
+
+        let res = parent;
+        if (!typeof key === undefined) {
+            res[key] = parent[key] = data instanceof Array ? [] : {};
+        }
+
+        for (let k in data) {
+            if (typeof data[k] === 'object') {
+                stackList.push({
+                    parent: res,
+                    key: k,
+                    data: data[k]
+                });
+            } else {
+                res[k] = data[k];
+            }
+        }
+    }
+
+    return root;
+}
+
+var nObj = {
+    x: 3,
+    m: 8
+};
+
 var a = {
     a1: 1,
     a2: {
@@ -146,6 +166,8 @@ var a = {
             c1: 1
         }
     },
+    a3: [1, 2, 3, 4],
+    n: nObj,
 }
 
 /**
@@ -162,4 +184,5 @@ var a = {
 
  */
 
-cloneLoop(a);
+let r = deepClone3(nObj, a);
+console.log(r);

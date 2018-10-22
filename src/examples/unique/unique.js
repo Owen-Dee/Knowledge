@@ -44,7 +44,7 @@ function unique4(arr) {
         return hashMap.hasOwnProperty(typeof item + item) 
             ? false
             : (hashMap[typeof item + item] = true);
-    });
+    });   
 }
 //比如 {value: 1} 和 {value: 2}，因为 typeof item + item 的结果都会是 object[object Object]
 let unique5 = function() {

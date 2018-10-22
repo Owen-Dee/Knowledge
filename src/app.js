@@ -4,7 +4,7 @@
 // import './examples/debounce/debounce'
 // import './examples/throttle/throttle'
 // import './examples/steamroller/steamroller'
-import './examples/deepClone/deepClone'
+// import './examples/deepClone/deepClone'
 // import './examples/instanceof/instanceof'
 
 // import './examples/performance/performance'
@@ -49,5 +49,10 @@ import './examples/deepClone/deepClone'
 //     dcyVue.name = 'dcy';
 // }, 3000);
 
-//raphael
+
+/**
+ * raphael
+ */
 // import './examples/raphael/raphaelDemo'
+
+import './examples/levenshteinDistance/levenshteinDistance'

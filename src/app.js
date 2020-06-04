@@ -57,4 +57,13 @@
 
 // import './examples/levenshteinDistance/levenshteinDistance'
 
-import './examples/KMP/kmp'
+// import './examples/KMP/kmp'
+
+// import './examples/date-month/date-month';
+// import './examples/date-month/date-month4';
+
+/**单链表 */
+// import './examples/data-structure/single-linked-list/LinkedList';
+
+/**双向链表 */
+import './examples/data-structure/doubly-linked-list/DoublyLinkedList';

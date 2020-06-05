@@ -66,4 +66,6 @@
 // import './examples/data-structure/single-linked-list/LinkedList';
 
 /**双向链表 */
-import './examples/data-structure/doubly-linked-list/DoublyLinkedList';
+// import './examples/data-structure/doubly-linked-list/DoublyLinkedList';
+
+import './examples/data-structure/doubly-linked-list/LRU';

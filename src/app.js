@@ -68,4 +68,11 @@
 /**双向链表 */
 // import './examples/data-structure/doubly-linked-list/DoublyLinkedList';
 
-import './examples/data-structure/doubly-linked-list/LRU';
+/** lru算法 */
+// import './examples/data-structure/doubly-linked-list/LRU';
+
+/** 二叉树 */
+// import './examples/data-structure/binary-tree/binaryTree';
+
+/** SKU */
+import './examples/sku/sku';

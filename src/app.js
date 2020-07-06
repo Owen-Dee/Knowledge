@@ -1,6 +1,13 @@
+/**
+ *1.模拟bind
+ */
 // import './examples/bind/bind'
+
+/**
+ * 2. 模拟call，apply
+ */
 // import './examples/call/call'
-// import './examples/await-async/await'
+
 // import './examples/debounce/debounce'
 // import './examples/throttle/throttle'
 // import './examples/steamroller/steamroller'
@@ -49,12 +56,6 @@
 //     dcyVue.name = 'dcy';
 // }, 3000);
 
-
-/**
- * raphael
- */
-// import './examples/raphael/raphaelDemo'
-
 // import './examples/levenshteinDistance/levenshteinDistance'
 
 // import './examples/KMP/kmp'
@@ -72,7 +73,7 @@
 // import './examples/data-structure/doubly-linked-list/LRU';
 
 /** 二叉树 */
-// import './examples/data-structure/binary-tree/binaryTree';
+import './examples/data-structure/binary-tree/binaryTree';
 
 /** SKU */
-import './examples/sku/sku';
+// import './examples/sku/sku';

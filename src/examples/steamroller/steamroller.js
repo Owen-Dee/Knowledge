@@ -38,3 +38,14 @@ function flatten(arr) {
 }
 
 console.log(flatten(source))
+
+
+var arr1 = [1,2,3,[1,2,3,4, [2,3,4]]];
+
+function flatDeep(arr, d = 1) {
+    debugger
+   return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val), [])
+                : arr.slice();
+};
+
+flatDeep(arr1, Infinity);

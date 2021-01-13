@@ -10,6 +10,7 @@
 
 // import './examples/debounce/debounce'
 // import './examples/throttle/throttle'
+/**数组扁平化 */
 // import './examples/steamroller/steamroller'
 // import './examples/deepClone/deepClone'
 // import './examples/instanceof/instanceof'
@@ -73,7 +74,12 @@
 // import './examples/data-structure/doubly-linked-list/LRU';
 
 /** 二叉树 */
-import './examples/data-structure/binary-tree/binaryTree';
+// import './examples/data-structure/binary-tree/binaryTree';
 
 /** SKU */
 // import './examples/sku/sku';
+
+// import './examples/requestAnimationFrame/requestAnimationFrame';
+
+/**jsonp */
+import './examples/JSONP/jsonp';

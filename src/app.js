@@ -60,6 +60,7 @@
 // import './examples/levenshteinDistance/levenshteinDistance'
 
 // import './examples/KMP/kmp'
+import './examples/KMP/kmp-beta'
 
 // import './examples/date-month/date-month';
 // import './examples/date-month/date-month4';
@@ -75,6 +76,7 @@
 
 /** 二叉树 */
 // import './examples/data-structure/binary-tree/binaryTree';
+// import './examples/data-structure/binary-tree/BT';
 
 /** SKU */
 // import './examples/sku/sku';
@@ -82,4 +84,6 @@
 // import './examples/requestAnimationFrame/requestAnimationFrame';
 
 /**jsonp */
-import './examples/JSONP/jsonp';
+// import './examples/JSONP/jsonp';
+
+// import './examples/test/test';

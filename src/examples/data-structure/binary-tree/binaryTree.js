@@ -1,4 +1,6 @@
 // http://foreverz.cn/2016/10/19/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%8EJavaScript/
+// https://www.pianshen.com/article/9828153025/   二叉树的高度和深度的区别
+// https://zhuanlan.zhihu.com/p/56066942 二叉搜索树
 
 class Node {
     constructor(data) {

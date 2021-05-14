@@ -1,4 +1,3 @@
-// 找出对应的移动为数：移动位数 = 已匹配的字符数 - 对应的部分匹配值
 function getNext(searchStr) {
     if (!searchStr || searchStr.length === 0) {
         return [];
@@ -40,8 +39,9 @@ function kmp(originalStr, searchStr) {
                 ++i;
                 continue;
             }
-
-            j = next[j - 1]; // j = next[j - 1]。此举意味着失配时，模式串 searchStr 相对于文本串 originalStr 向右移动了 j - next [j - 1] 位
+            // 找出模式串对应的移动为数：移动位数 = 已匹配的字符数 - 对应的部分匹配值
+            // j = next[j - 1]。此举意味着失配时，模式串 searchStr 相对于文本串 originalStr 向右移动了 j - next [j - 1] 位
+            j = next[j - 1];
         }
     }
 

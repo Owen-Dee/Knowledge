@@ -20,6 +20,8 @@
 // import './examples/unique/unique'
 // import './examples/lru/lru'
 
+// import './examples/lru/lru-review2';
+
 // import './examples/dependencyCollection/dependencyCollection'
 // import './examples/regular/regular'
 
@@ -58,9 +60,10 @@
 // }, 3000);
 
 // import './examples/levenshteinDistance/levenshteinDistance'
+// import './examples/levenshteinDistance/editDistance';
 
 // import './examples/KMP/kmp'
-import './examples/KMP/kmp-beta'
+// import './examples/KMP/kmp-beta'
 
 // import './examples/date-month/date-month';
 // import './examples/date-month/date-month4';
@@ -77,6 +80,7 @@ import './examples/KMP/kmp-beta'
 /** 二叉树 */
 // import './examples/data-structure/binary-tree/binaryTree';
 // import './examples/data-structure/binary-tree/BT';
+import './examples/data-structure/binary-tree/BT-review2';
 
 /** SKU */
 // import './examples/sku/sku';

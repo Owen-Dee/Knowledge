@@ -6,47 +6,48 @@ class Node {
     }
 }
 
-class BT {
+class BinaryTree {
     constructor() {
         this.root = null;
     }
 
     insert(data) {
         const node = new Node(data);
-        if (!this.root) { // 根节点不存在
+        if (!this.root) {
             this.root = node;
         } else {
-            this.insetNode(this.root, node);
+            let currentNode = this.root;
+            while(true) {
+                if (node.data < currentNode.data) {
+                    if (currentNode.left) {
+                        currentNode = currentNode.left;
+                    } else {
+                        currentNode.left = node;
+                        break;
+                    }
+                } else {
+                    if (currentNode.right) {
+                        currentNode = currentNode.right;
+                    } else {
+                        currentNode.right = node;
+                        break;
+                    }
+                }
+            }
         }
     }
-
-    insetNode(treeNode, node) {
-        if (node.data < treeNode.data) { // 插入的节点小于当前节点,插入左子树
-            if (treeNode.left) { // 当前节点有左子树
-                this.insetNode(treeNode.left, node);
-            } else { // 当前节点无左子树
-                treeNode.left = node;
-            }
-        } else { // 插入的节点大于当前节点，插入右子树
-            if (treeNode.right) {
-                this.insetNode(treeNode.right, node);
-            } else {
-                treeNode.right = node;
-            }
-        }
-    }
-
     // 前序遍历
-    preOrder() {
-        const orderData = [];
-        if (!this.root) {
-            return orderData;
+    prevOrder() {
+        let node = this.root;
+        if (!node) {
+            return;
         }
 
-        let stack = [this.root];
-        while(stack.length >= 1) {
-            const node = stack.pop();
-            orderData.push(node.data);
+        const prevOrderArray = [];
+        const stack = [node];
+        while (stack.length > 0) {
+            node = stack.pop();
+            prevOrderArray.push(node.data);
             if (node.right) {
                 stack.push(node.right);
             }
@@ -56,141 +57,156 @@ class BT {
             }
         }
 
-        return orderData;
-    }
-    // 后序遍历
-    postOrder() {
-        const orderData = [];
-        if (!this.root) {
-            return orderData;
-        }
-
-        let stack = [this.root];
-        while(stack.length >=1) {
-            const node = stack.pop();
-            orderData.push(node.data);
-            if (node.left) {
-                stack.push(node.left);
-            }
-
-            if (node.right) {
-                stack.push(node.right);
-            }
-        }
-
-        return orderData.reverse();
+        return prevOrderArray;
     }
 
     // 中序遍历
     inOrder() {
-        const orderData = [];
-        if (!this.root) {
-            return orderData;
+        let node = this.root;
+        if (!node) {
+            return;
         }
 
-        let stack = [];
-        let node = this.root;
-        while(node || stack.length > 0) {
+        const inOrderArray = [];
+        const stack = [];
+        while(stack.length > 0 || node) {
             if (node) {
                 stack.push(node);
                 node = node.left;
             } else {
                 node = stack.pop();
-                orderData.push(node.data);
+                inOrderArray.push(node.data);
                 node = node.right;
             }
         }
 
-        return orderData;
+        return inOrderArray;
     }
 
-    // 广度优先遍历
-    breadthOrder() {
-        const orderData = [];
-        if (!this.root) {
+    // 后续遍历
+    postOrder() {
+        let node = this.root;
+        if (!node) {
             return;
         }
 
-        let stack = [this.root];
+        const postOrderArr = [];
+        const stack = [node];
         while(stack.length > 0) {
-            const arr = [...stack];
-            const arr2 = [];
-            for (let i = 0; i < arr.length; i++) {
-                const node = arr[i];
-                orderData.push(node.data);
-                if (node.left) {
-                    arr2.push(node.left);
-                }
-    
-                if (node.right) {
-                    arr2.push(node.right);
-                }
-            }
-            stack = [...arr2];
-        }
+            node = stack.pop();
+            postOrderArr.push(node.data);
 
-        return orderData;
-    }
-
-    // 广度优先遍历
-    breadthOrder2() {
-        const orderData = [];
-        if (!this.root) {
-            return;
-        }
-
-        let queue = [this.root];
-        while(queue.length > 0) {
-            const node = queue.shift();
-            orderData.push(node.data);
             if (node.left) {
-                queue.push(node.left);
+                stack.push(node.left);
             }
 
             if (node.right) {
-                queue.push(node.right);
+                stack.push(node.left);
             }
         }
 
-        return orderData;
+        return postOrderArr.reverse();
     }
 
-    show() {
-        console.log(this.root);
+    delete(data) {
+        let node = this.root;
+        if (!node) {
+            return;
+        }
+        let isLeft = true;
+        let parentNode = node;
+        while(node) {
+            if (node.data === data) {
+                break;
+            }
+            parentNode = node;
+            if (data < node.data) {
+                isLeft = true;
+                node = node.left;
+            } else {
+                isLeft = false;
+                node = node.right;
+            }
+        }
+
+        if (!node) {
+            return;
+        }
+        if (!node.left && !node.right) { // 要删除的节点无左右子树
+            if (node === this.root) {
+                this.root = null;
+            } else {
+                if (isLeft) {
+                    parentNode.left = null;
+                } else {
+                    parentNode.right = null;
+                }
+            }
+        } else if (node.left && !node.right) { // 删除的节点无右子树
+            if (node === this.root) {
+                this.root = this.root.left;
+            } else {
+                if (isLeft) {
+                    parentNode.left = node.left;
+                } else {
+                    parentNode.right = node.left;
+                }
+            }
+        } else if (!node.left && node.right) { // 删除的节点无左子树
+            if (node === this.root) {
+                this.root = this.root.right;
+            } else {
+                if (isLeft) {
+                    parentNode.left = node.right;
+                } else {
+                    parentNode.right = node.right;
+                }
+            }
+        } else if (node.left && node.right) { // 删除的节点有左右子树
+            const successor = this.getSuccessor(node.right);
+            if (isLeft) {
+                parentNode.left = successor;
+            } else {
+                parentNode.right = successor;
+            }
+            successor.left = node.left;
+        }
+    }
+
+    getSuccessor(node) {
+        let currentNode = node;
+        let successor = node;
+        let parentSuccessor = node;
+        while(currentNode) {
+            parentSuccessor = successor;
+            successor = currentNode;
+            currentNode = currentNode.left;
+        }
+
+        if (successor !== node) {
+            parentSuccessor.left = successor.right;
+            successor.right = node;
+        }
+
+        return successor;
     }
 }
 
-const data = [9, 5, 4, 12, 14, 8, 22, 20, 3, 10, 7];
-const bt = new BT();
-for(let i = 0; i < data.length; i++) {
-    bt.insert(data[i]);
-}
+console.log(`**********1.二叉树初始化***********`);
+const bt = new BinaryTree();
+const nodes = [8, 3, 6, 4, 9, 11, 2, 5, 7];
 
-bt.show();
-/**
-                     9
-                 /      \
-                5        12
-              /   \     /   \
-            4      8   10   14
-          /       /           \
-         3       7            22
-                             /
-                            20  
-*/        
+nodes.forEach((item) => {
+    bt.insert(item);
+});
 
-console.log("1.前序遍历");
-const preOrderData = bt.preOrder();
-console.log(preOrderData);                  // [9, 5, 4, 3, 8, 7, 12, 10, 14, 22, 20]
-console.log("2.后序遍历");
-const postOrderData = bt.postOrder(); 
-console.log(postOrderData);                 // [3, 4, 7, 8, 5, 10, 20, 22, 14, 12, 9]
-console.log("3.中序遍历");
-const inOrderData = bt.inOrder();
-console.log(inOrderData);                   // [3, 4, 5, 7, 8, 9, 10, 12, 14, 20, 22]
-console.log("4.广度遍历");
-const breadthOrderData = bt.breadthOrder();
-console.log(breadthOrderData);              // [9, 5, 12, 4, 8, 10, 14, 3, 7, 22, 20]
-console.log("5.广度遍历2");
-const breadthOrderData2 = bt.breadthOrder2();
-console.log(breadthOrderData2);             // [9, 5, 12, 4, 8, 10, 14, 3, 7, 22, 20]
+console.log(`**********2.递归:前序遍历***********`);
+const res = bt.prevOrder();
+console.log(res);
+
+console.log(`**********3.删除3***********`);
+bt.delete(3);
+
+console.log(`**********4.递归:前序遍历***********`);
+const res2 = bt.prevOrder();
+console.log(res2);

@@ -15,6 +15,7 @@ class BinaryTree {
         this.root = null;
     }
 
+    // 递归插入数据
     insert(data) {
         const node = new Node(data);
         if (!this.root) { // 根节点为空
@@ -39,6 +40,34 @@ class BinaryTree {
             }
         }
     }
+
+    // 非递归插入数据
+    insert2(data) {
+        const node = new Node(data);
+        if (!this.root) {
+            this.root = node;
+        } else {
+            let currentNode = this.root;
+            while(true) {
+                if (node.data < currentNode.data) {
+                    if (currentNode.left) {
+                        currentNode = currentNode.left;
+                    } else {
+                        currentNode.left = node;
+                        break;
+                    }
+                } else {
+                    if (currentNode.right) {
+                        currentNode = currentNode.right;
+                    } else {
+                        currentNode.right = node;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * 前序遍历:递归
      */
@@ -254,7 +283,7 @@ class BinaryTree {
             }
         }
 
-        if (!node) { // 没查到改节点
+        if (!node) { // 没查到要删除的节点
             return null;
         }
 
@@ -322,8 +351,14 @@ class BinaryTree {
 console.log(`**********1.二叉树初始化***********`);
 const bt = new BinaryTree();
 const nodes = [8, 3, 6, 4, 9, 11, 2, 5, 7];
+
+// 递归插入数据
+// nodes.forEach((item) => {
+//     bt.insert(item);
+// });
+// 非递归插入数据
 nodes.forEach((item) => {
-    bt.insert(item);
+    bt.insert2(item);
 });
 
 /**

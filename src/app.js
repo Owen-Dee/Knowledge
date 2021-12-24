@@ -2,6 +2,7 @@
  *1.模拟bind
  */
 // import './examples/bind/bind'
+import './examples/bind/bind-review'
 
 /**
  * 2. 模拟call，apply
@@ -12,6 +13,7 @@
 // import './examples/throttle/throttle'
 /**数组扁平化 */
 // import './examples/steamroller/steamroller'
+/**深拷贝 */
 // import './examples/deepClone/deepClone'
 // import './examples/instanceof/instanceof'
 
@@ -80,7 +82,8 @@
 /** 二叉树 */
 // import './examples/data-structure/binary-tree/binaryTree';
 // import './examples/data-structure/binary-tree/BT';
-import './examples/data-structure/binary-tree/BT-review2';
+// import './examples/data-structure/binary-tree/BT-review2';
+// import './examples/data-structure/doubly-linked-list/lru-review';
 
 /** SKU */
 // import './examples/sku/sku';

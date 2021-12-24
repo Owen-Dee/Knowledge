@@ -32,3 +32,42 @@ function combines(...chunks) {
 
 const val1 = combines(types, colors, cpus);
 console.log(val1);
+
+
+function cartesianProductOf() {
+    return Array.prototype.reduce.call(arguments, function(a, b) {
+        debugger
+        var ret = [];
+        a.forEach(function(a) {
+            b.forEach(function(b) {
+                ret.push(a.concat([b]));
+            });
+        });
+        return ret;
+    }, [[]]);
+}
+
+// const data = [types, colors, cpus];
+// const res = cartesianProductOf(...data);
+// console.log(res);
+
+
+const skuCombine = (...skus) => {
+    if (!skus || skus.length < 2) {
+        return skus;
+    }
+
+    return skus.reduce((prev, next) => {
+        let res = [];
+        prev.forEach((p) => {
+            next.forEach((n) => {
+                res.push(p.concat(n));
+            })
+        });
+        return res;
+    }, [[]]);
+}
+
+// const data = [types, colors, cpus];
+// const res = skuCombine(...data);
+// console.log(res);

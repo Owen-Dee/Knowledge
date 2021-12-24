@@ -1,3 +1,4 @@
+// 1
 let steamroller = function(arr) {
     if (!(arr instanceof Array)) {
         return;
@@ -30,22 +31,63 @@ let source = [1, [2], {},
 // console.log(result);
 
 
-
+// 2.
 function flatten(arr) {
     return arr.reduce(function(prev, next) {
         return prev.concat(Array.isArray(next) ? flatten(next) : next)
-    }, [])
+    }, []);
 }
 
-console.log(flatten(source))
+// console.log(flatten(source))
 
 
+// 3.
 var arr1 = [1,2,3,[1,2,3,4, [2,3,4]]];
 
 function flatDeep(arr, d = 1) {
-    debugger
-   return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val), [])
-                : arr.slice();
+    // if (!arr || arr.length === 0) {
+    //     return;
+    // }
+
+    if (d > 0) {
+        return arr.reduce((prev, next) => {
+            if (next instanceof Array) {
+                debugger
+                const res = flatDeep(next, d - 1);
+                console.log('res');
+                console.log(res);
+                return prev.concat(res);
+            } else {
+                return prev.concat(next);
+            }
+        }, []);
+    } else {
+        return arr.slice();
+    }
+//     debugger
+//    return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val), [])
+//                 : arr.slice();
 };
 
-flatDeep(arr1, Infinity);
+const res = flatDeep(arr1, Infinity);
+console.log(res);
+
+
+
+const bianPing = (arr) => {
+    if (!arr) {
+        return;
+    }
+
+    return arr.reduce((prev, next) => {
+        debugger
+        if (next instanceof Array) {
+            return prev.concat(bianPing(next));
+        } else {
+            return prev.concat(next);
+        }
+    }, []);
+}
+// const arr2 = [1];
+// const res = bianPing(arr2);
+// console.log(res);
